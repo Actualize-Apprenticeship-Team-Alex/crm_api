@@ -76,11 +76,9 @@
         </div>
         <div class="update-lead-form">
           <div class="form-group">
-
-              <%= fields_for :outreaches do |outreach_fields| %>
-                Latest Outreach: <%= outreach_fields.text_field :latest_outreach, {class: 'form-control'} %>
-              <% end %>
-            
+            <%= fields_for :outreaches do |outreach_fields| %>
+              Latest Outreach: <%= outreach_fields.text_field :latest_outreach, c{class: 'form-control'} %>
+            <% end %>
           </div>
           <div class="form-group">
             <div class="i-checks">
