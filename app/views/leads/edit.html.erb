@@ -37,7 +37,8 @@
               <h2 class="h5 display">Auto Text</h2>
             </div>
             <!-- /leads/auto_text(.:format) -->
-            <button id="sendAutoText" class="form-control btn btn-info">Send Auto Text</button>
+            <p id="lead_name" style="visibility: hidden"><%= @lead.full_name %></p>            
+            <button onclick="autotext()" id="sendAutoText" class="form-control btn btn-info">Send Auto Text</button>
             <%= link_to "Call Action", "/leads/auto_text" %>
             <div class="card-header d-flex align-items-center">
               <h2 class="h5 display">Send Custom Text Message</h2>
@@ -101,10 +102,23 @@
   </div>
 </section>
 
-
+<meta name="_token" content="{{ csrf_token() }}">
 <script type="text/javascript" src="//media.twiliocdn.com/sdk/js/client/v1.3/twilio.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//media.twiliocdn.com/sdk/js/client/v1.3/twilio.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
 <script type="text/javascript">
+  /* global axios */
+
+  function autotext() {
+    axios.post("/autotext").then(function(response) {
+       console.log('send autotext');
+       log ("Sent autotext");
+       }.bind(this)).catch(function(error){
+       console.log(error);         
+    });
+  }
+  
   $(function () {
   // log('Requesting Capability Token...');
   $.getJSON('/token')
@@ -150,6 +164,8 @@
       });
 
       setClientNameUI(data.identity);
+      console.log('This is the data:');
+      console.log(data);
     })
     .fail(function () {
       log('Could not get a token from server!');
@@ -167,15 +183,19 @@
     Twilio.Device.connect(params);
   };
   //Bind Auto Text
-  document.getElementById('sendAutoText').onclick = function () {
-    log('Send Auto Text');
-    client.messages.create({
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: process.env.CELL_PHONE_NUMBER,
-      body: 'Hi' + " X " + 'this is Rena from Actualize. Do you have a minute to talk?'
-    }).then((messsage) => console.log(message.sid));
 
-};
+  // document.getElementById('sendAutoText').onclick = function () {
+  //   var leadName = document.getElementById('lead_name').innerHTML;
+  //   console.log(leadName);
+  //   log('Send Test Text');
+  //   var client = new twilio('TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN');
+  //   client.messages.create({
+  //     from: process.env.TWILIO_PHONE_NUMBER,
+  //     to: process.env.CELL_PHONE_NUMBER,
+  //     body: 'Hi' + leadName + 'this is Rena from Actualize. Do you have a minute to talk?'
+  //   }).then((messsage) => console.log(message.sid));
+
+// };
 
   // Bind button to hangup call
   document.getElementById('button-hangup').onclick = function () {

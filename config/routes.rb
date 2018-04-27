@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/token' => 'leads#token'
   post '/voice' => 'leads#voice'
   post '/text' => 'leads#text'
+  post '/autotext' => 'leads#autotext'
 
   get '/daily_logs' => 'daily_progress_logs#index'
 

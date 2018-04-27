@@ -14,10 +14,11 @@ class Lead < ApplicationRecord
 
   # Send an automated text to a lead:
   def text
+    puts "Test text"
     @client = Twilio::REST::Client.new
     @client.messages.create(
       from: ENV['TWILIO_PHONE_NUMBER'],
-      to: self.phone,
+      to: +16505375080,
       body: 'Hi' + self.first_name + 'this is Rena from Actualize. Do you have a minute to talk?'
     )
   end
