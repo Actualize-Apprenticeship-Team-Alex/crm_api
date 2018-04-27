@@ -110,6 +110,12 @@ class LeadsController < ApplicationController
     render nothing: true
   end
 
+  # Text from the browser:
+  def auto_text
+    puts "Working"
+    # puts @lead.full_name
+  end
+
   def no_leads
   end
 

@@ -80,7 +80,7 @@ GEM
     ffi (1.9.23)
     figaro (1.1.1)
       thor (~> 0.14)
-    geocoder (1.4.4)
+    geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.0.0)
@@ -208,7 +208,7 @@ DEPENDENCIES
   drip-ruby
   faker
   figaro
-  geocoder (= 1.4.4)
+  geocoder (= 1.4.7)
   icalendar (= 2.4.1)
   jbuilder (~> 2.5)
   jquery-rails

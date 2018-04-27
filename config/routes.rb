@@ -3,7 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :admins
 
-  resources :leads
+  resources :leads do 
+    collection do
+      get :auto_text
+    end
+  end
+
+
   get '/next' => 'leads#next'
   get '/no_leads' => 'leads#no_leads'
   get '/token' => 'leads#token'
