@@ -1,5 +1,7 @@
 class Lead < ApplicationRecord
   has_many :events
+  has_many :outreaches
+  accepts_nested_attributes_for :outreaches
 
   before_save :standardize_phone
 
@@ -36,6 +38,10 @@ class Lead < ApplicationRecord
   # Reset a lead as if it's brand new. This is useful for manual testing.
   def reset
     self.update(hot: true, contacted: false, connected: false, exclude_from_calling: false, appointment_date: nil, advisor: nil, number_of_dials: 0)
+  end
+
+  def latest_outreach
+    self.outreaches.last.latest_outreach
   end
 
   private

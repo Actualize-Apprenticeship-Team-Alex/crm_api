@@ -17,26 +17,24 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Created</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Hot?</th>
-                <th>Appointment Date</th>
-                <th>Processed Within</th>
+                <th v-on:click="sort_by_setter('created_at')">Created</th>
+                <th v-on:click="sort_by_setter('first_name')">First Name</th>
+                <th v-on:click="sort_by_setter('last_name')">Last Name</th>
+                <th v-on:click="sort_by_setter('email')">Email</th>
+                <th>Phone</th>                
+                <th v-on:click="sort_by_setter('appointment_date')">Appointment Date</th>
+                <th>Call Converter Notes</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="lead in leads">
+              <tr v-for="lead in sorted_leads">
                 <td>{{ moment(lead.created_at).format('dddd MMM Do YYYY, h:mm a') }}</td>
                 <td>{{ lead.first_name }}</td>
                 <td>{{ lead.last_name }}</td>
                 <td><a v-bind:href="'/leads/' + lead.id + '/edit'">{{ lead.email }}</a></td>
-                <td>{{ lead.phone }}</td>
-                <td>{{ lead.hot }}</td>
+                <td>{{ lead.phone }}</td>                
                 <td>{{ moment(lead.appointment_date).format('dddd MMM Do YYYY, h:mm a') }}</td>
-                <td>{{ lead.processed_within_minutes }}</td>
+                <td>{{ lead.notes }}</td>
               </tr>
             </tbody>
           </table>
