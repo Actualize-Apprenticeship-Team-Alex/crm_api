@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   get '/next' => 'leads#next'
   get '/no_leads' => 'leads#no_leads'
   get '/token' => 'leads#token'
